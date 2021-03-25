@@ -11,9 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/// <summary>
-/// ////////////////////////////////////Assignment 3
-/// </summary>
+
+// Stephan Peck - IS 413 - Section 3, Group 7
+// Assignment 9
+
 namespace MovieMate
 {
     public class Startup
