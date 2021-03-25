@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+
+    ViewBag.Title = "Movie Info";
+    ViewBag.SubTitle = "Add to my collection!";
+    ViewBag.Background = "/img/moviesBlur.jpg";
+}
+
+
+@model MovieMate.Models.MovieModel
+
+
+<h2>Movie Info</h2>
+<hr>
+<!--<button class="btn btn-primary" data-toggle="modal" data-target="#addMovie" style="background-color: red">Add Movie</button>-->
+
+@*<button style="float:right" class="btn btn-default">Go to Movies without adding</button>*@
+<div asp-validation-summary="All"></div>
+<form id="@Model.movieID" asp-action="allMovies"  method="post" style="column-count:2">
+
+    <!--Movie ID-->
+    <input class="form-control" style="width:30%;" type="text" id="name" asp-for="@Model.movieID" required hidden>
+
+
+    <!--Title-->
+    <label for="movieTitle" asp-for="movieTitle"><b>Movie Title:</b></label>
+    <input class="form-control" style="width:30%;" type="text" id="movieTitle" asp-for="movieTitle" placeholder="Star Wars" required><br><br>
+
+    <!--Year-->
+    <label for="year" asp-for="year"><b>Year Released <br />(1878-2021):</b></label>
+    <input class="form-control" style="width:30%;" type="number" id="year" asp-for="year" placeholder="2002" min="1878" max="2021" required><br><br>
+
+    <!--Director-->
+    <label for="director" asp-for="director"><b>Director:</b></label>
+    <input class="form-control" style="width:30%;" type="text" id="director" asp-for="director" placeholder="George Lucas" required><br><br>
+
+    <!--Rating-->
+    <label for="rating" asp-for="rating"><b>Rating:</b></label>
+    <select class="form-control" style="width:30%;" id="rating" asp-for="rating">
+        <option value="r">R</option>
+        <option value="pg13" selected>PG-13</option>
+        <option value="pg">PG</option>
+        <option value="g">G</option>
+    </select>
+    <br /><br />
+
+    <!--Edited-->
+    <label for="edited" asp-for="edited"><b>Edited:</b></label>
+    <input class="form-check-label" type="checkbox" id="edited" asp-for="edited" unchecked><br><br>
+
+    <!--Lent To-->
+    <label for="lentTo" asp-for="lentTo"><b>Lent To:</b></label>
+    <input class="form-control" style="width:30%;" type="text" id="lentTo" asp-for="lentTo" placeholder="Spencer Hilton"><br><br>
+
+    <!--Notes-->
+    <label for="notes" asp-for="notes"><b>Notes:</b></label>
+    <input class="form-control" style="width:30%;" type="text" id="notes" asp-for="notes"><br><br>
+
+
+    <!--Submit-->
+    <input class="btn btn-info" type="submit" value="Save Movie and go to Collection" id="submit" />
+
+</form>
+
+
+<!-- Add Movie Modal ENDED UP NOT USING-->
+<div class="modal fade" id="addMovie" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Movie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p></p>
+
+                <p></p>
+                <br>
+                <div style=" column-count: 2;">
+                    <p><b>Strength:</b><br> Distance </p>
+                    <p><b>Weakness:</b><br> Speed </p>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--
+                <button type="button" class="btn btn-link">Nice Button</button>
+                -->
+                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

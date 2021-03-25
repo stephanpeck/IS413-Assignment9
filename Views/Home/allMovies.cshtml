@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    ViewBag.Title = "All Movies";
+    ViewBag.SubTitle = "Browse my collection!";
+    ViewBag.Background = "/img/moviesBlur.jpg";
+
+}
+
+
+@*@model MovieMate.Models.ApplicationResponse*@
+@model IEnumerable<MovieModel>
+
+<div>
+    @*@if (Model.movieTitle != null)
+    {
+        @: @Model.movieTitle successfully added!
+    }*@
+      <a class="nav-link" style="float:right" asp-controller="Home" asp-action="Movie">
+        <i class="material-icons">theaters</i> Add Another Movie
+      </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Year</th>
+                <th scope="col">Director</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Edited</th>
+                <th scope="col">Lent To</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            
+                <tr>
+                    <td>@item.movieTitle</td>
+                    <td>@item.year</td>
+                    <td>@item.director</td>
+                    <td>@item.rating.ToUpper()</td>
+                    <td>@item.edited</td>
+                    <td>@item.lentTo</td>
+                    <td>@item.notes</td>
+                    <td>
+                        <!--These hidden forms act as automatic fillers for the edit and delete button. Each delete, and each edit button will be filled with the same info for its corresponding movie -->
+                        <form asp-action="Movie" method="post">
+                            <input asp-for="@item.movieID" value="@item.movieID" name="movieID" hidden />
+                            <input asp-for="@item.movieTitle" value="@item.movieTitle" name="movieTitle" hidden />
+                            <input asp-for="@item.year" value="@item.year" name="year" hidden />
+                            <input asp-for="@item.director" value="@item.director" name="director" hidden />
+                            <input asp-for="@item.rating" value="@item.rating" name="rating" hidden />
+                            <input asp-for="@item.edited" value="@item.edited" name="edited" hidden />
+                            <input asp-for="@item.lentTo" value="@item.lentTo" name="lentTo" hidden />
+                            <input asp-for="@item.notes" value="@item.notes" name="notes" hidden />
+
+                            <button class="btn btn-info btn-sm btn-block" type="submit" value="Edit" id="submit"><i class="material-icons">edit</i> Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="delete" method="post">
+                            <input asp-for="@item.movieID" value="@item.movieID" name="movieID" hidden />
+                            <input asp-for="@item.movieTitle" value="@item.movieTitle" name="movieTitle" hidden />
+                            <input asp-for="@item.year" value="@item.year" name="year" hidden />
+                            <input asp-for="@item.director" value="@item.director" name="director" hidden />
+                            <input asp-for="@item.rating" value="@item.rating" name="rating" hidden />
+                            <input asp-for="@item.edited" value="@item.edited" name="edited" hidden />
+                            <input asp-for="@item.lentTo" value="@item.lentTo" name="lentTo" hidden />
+                            <input asp-for="@item.notes" value="@item.notes" name="notes" hidden />
+
+                            <button class="btn btn-danger btn-sm btn-block" type="submit" value="Delete" id="submit"><i class="material-icons">delete_forever</i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+             }
+        </tbody>
+
+
+    </table>
+
+</div>
